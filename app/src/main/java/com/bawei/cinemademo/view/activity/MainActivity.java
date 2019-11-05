@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.bawei.cinemademo.R;
+import com.bawei.cinemademo.base.BaseActivity;
 
 /**
  *@describe(描述)：MainActivity
@@ -11,11 +12,16 @@ import com.bawei.cinemademo.R;
  *@time（时间）: 17:04
  *@author（作者）: 盖磊
  **/
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    protected int getLayoutId() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected void initView() {
+
     }
 }
