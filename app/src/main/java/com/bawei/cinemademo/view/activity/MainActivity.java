@@ -1,8 +1,5 @@
 package com.bawei.cinemademo.view.activity;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
 import com.bawei.cinemademo.R;
 import com.bawei.cinemademo.base.BaseActivity;
 
