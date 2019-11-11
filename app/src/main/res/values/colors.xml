@@ -5,4 +5,8 @@
     <color name="colorAccent">#D81B60</color>
     <color name="radiocheck_true">#D8D8D8</color>
     <color name="radiocheck_flash">#333333</color>
+    <color name="movie_home_bg">#161B33</color>
+    <color name="movie_home_fen">#1E2444</color>
+    <color name="check_btn_bg">#FFFFFF</color>
+    <color name="check_btn_text">#E81A5F</color>
 </resources>

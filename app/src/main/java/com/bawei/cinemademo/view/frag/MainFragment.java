@@ -4,19 +4,11 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.bawei.cinemademo.R;
 import com.bawei.cinemademo.base.BaseFragment;
-import com.bawei.cinemademo.view.activity.LoginActivity;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
+import com.bawei.cinemademo.view.activity.ShowActivity;
 
 /**
  * @describe(描述)：com.bawei.cinemademo.view.frag
@@ -49,7 +41,7 @@ public class MainFragment extends BaseFragment {
                     SharedPreferences.Editor edit = sp.edit();
                     edit.putBoolean("frist",true);
                     edit.commit();
-                    startActivity(new Intent(getContext(), LoginActivity.class));
+                    startActivity(new Intent(getContext(), ShowActivity.class));
                     getActivity().finish();
                 }
             });

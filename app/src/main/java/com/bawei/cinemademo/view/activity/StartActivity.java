@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
 import com.bawei.cinemademo.R;
 import com.bawei.cinemademo.base.BaseActivity;
@@ -21,7 +19,7 @@ public class StartActivity extends BaseActivity {
             Intent intent = null;
             switch (msg.what){
                 case 0:
-                    intent = new Intent(getBaseContext(),LoginActivity.class);
+                    intent = new Intent(getBaseContext(), ShowActivity.class);
                     break;
                 case 1:
                     intent = new Intent(getBaseContext(),MainActivity.class);

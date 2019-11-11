@@ -10,7 +10,7 @@ public class Data<T> {
 
     public T result;
     public String message;
-    public String status;
+    public String status = "0000";
 
     public Data(){}
 

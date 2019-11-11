@@ -2,6 +2,13 @@ package com.bawei.cinemademo.app;
 
 import android.app.Application;
 import android.content.Context;
+import android.os.Environment;
+
+import com.facebook.cache.disk.DiskCacheConfig;
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.imagepipeline.core.ImagePipelineConfig;
+
+import java.io.File;
 
 /**
  *@describe(描述)：App
@@ -17,5 +24,17 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         context = this;
+
+        // 高级初始化：
+        File file = new File(Environment.getExternalStorageDirectory()
+                + File.separator+"frescocache");
+        Fresco.initialize(this, ImagePipelineConfig.newBuilder(this)
+                .setMainDiskCacheConfig(
+                        DiskCacheConfig.newBuilder(this)
+                                .setBaseDirectoryPath(file) // 注意Android运行时权限。
+                                .build()
+                )
+                .build()
+        );
     }
 }
