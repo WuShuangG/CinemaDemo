@@ -1,5 +1,7 @@
 package com.bawei.cinemademo.view.frag;
 
+import android.content.Intent;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,19 +11,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bawei.cinemademo.R;
+import com.bawei.cinemademo.adapter.CenterAdapter;
 import com.bawei.cinemademo.adapter.LastAdapter;
 import com.bawei.cinemademo.adapter.TopAdapter;
 import com.bawei.cinemademo.base.BaseFragment;
 import com.bawei.cinemademo.bean.Data;
 import com.bawei.cinemademo.bean.HotMovie;
 import com.bawei.cinemademo.bean.MBanner;
+import com.bawei.cinemademo.bean.Soon;
 import com.bawei.cinemademo.model.CallBackT;
 import com.bawei.cinemademo.presenter.HotMoviePresenter;
 import com.bawei.cinemademo.presenter.MbannerPresenter;
 import com.bawei.cinemademo.presenter.ReleMoviePresenter;
+import com.bawei.cinemademo.presenter.SoonMoviePresenter;
 import com.bawei.cinemademo.utils.FrescoUtils;
+import com.bawei.cinemademo.view.activity.MoiveDetailActivity;
 import com.bumptech.glide.Glide;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.stx.xhb.xbanner.XBanner;
@@ -60,6 +67,8 @@ public class ShowMovieFragment extends BaseFragment {
     private TopAdapter topAdapter;
     private HotMoviePresenter hotMoviePresenter;
     private LastAdapter lastAdapter;
+    private SoonMoviePresenter soonMoviePresenter;
+    private CenterAdapter centerAdapter;
 
     @Override
     protected int getLayoutId() {
@@ -70,20 +79,79 @@ public class ShowMovieFragment extends BaseFragment {
     protected void initView() {
         mbannerPresenter = new MbannerPresenter(new BannerList());
         mbannerPresenter.getRequestData();
-
+        //上列表
         releMoviePresenter = new ReleMoviePresenter(new HotList());
         releMoviePresenter.getRequestData(1,10);
         movieListTop.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
         topAdapter = new TopAdapter();
         movieListTop.setAdapter(topAdapter);
+        topAdapter.setOnClickTopItemListener(new TopAdapter.OnClickTopItemListener() {
+            @Override
+            public void onClick(int movieId) {
+                Intent intent = new Intent(getContext(), MoiveDetailActivity.class);
+                intent.putExtra("movieId",movieId);
+                startActivity(intent);
+            }
+        });
 
+        //中列表
+        soonMoviePresenter = new SoonMoviePresenter(new SoonList());
+        soonMoviePresenter.getRequestData(1,4);
+        movieListCenter.setLayoutManager(new LinearLayoutManager(getContext()));
+        centerAdapter = new CenterAdapter();
+        movieListCenter.setAdapter(centerAdapter);
 
+        //下列表
         hotMoviePresenter = new HotMoviePresenter(new ReleList());
-        hotMoviePresenter.getRequestData(1,10);
-        movieListLast.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        hotMoviePresenter.getRequestData(1,4);
+        final GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),3);
+        gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                int type = movieListLast.getAdapter().getItemViewType(position);
+                if(type == lastAdapter.TYPE_ONE){
+                    return gridLayoutManager.getSpanCount();
+                }else{
+                    return 1;
+                }
+            }
+        });
+        movieListLast.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+                //super.getItemOffsets(outRect, view, parent, state);
+                GridLayoutManager.LayoutParams layoutParams = (GridLayoutManager.LayoutParams) view.getLayoutParams();
+
+                int spansize = layoutParams.getSpanSize();
+                int spanindex = layoutParams.getSpanIndex();
+                outRect.top = 20;
+                if(spansize != gridLayoutManager.getSpanCount()){
+                    if(spanindex == 1){
+                        outRect.left = 10;
+                    }else{
+                        outRect.right = 10;
+                    }
+                }
+            }
+        });
+        movieListLast.setLayoutManager(gridLayoutManager);
         lastAdapter = new LastAdapter();
         movieListLast.setAdapter(lastAdapter);
 
+    }
+
+    class SoonList implements CallBackT<Data<List<Soon>>>{
+
+        @Override
+        public void onSuccess(Data<List<Soon>> listData) {
+            centerAdapter.addAll(listData.result);
+            centerAdapter.notifyDataSetChanged();
+        }
+
+        @Override
+        public void onError(Data data) {
+
+        }
     }
 
     class ReleList implements CallBackT<Data<List<HotMovie>>>{
@@ -117,6 +185,7 @@ public class ShowMovieFragment extends BaseFragment {
         @Override
         public void onSuccess(final Data<List<MBanner>> listData) {
 
+            moviewXbanner.setPointsIsVisible(false);
             movieBannerSize.setText("/"+listData.result.size());
             moviewXbanner.setData(listData.result, null);
             moviewXbanner.setmAdapter(new XBanner.XBannerAdapter() {

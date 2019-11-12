@@ -22,10 +22,10 @@ import java.util.List;
  * @time（时间）: 14:13
  * @author（作者）: 盖磊
  **/
-public class LastAdapter extends RecyclerView.Adapter {
+public class LastAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private static final int TYPE_ONE =0;
-    private static final int TYPE_TWO =1;
+    public static final int TYPE_ONE =0;
+    public static final int TYPE_TWO =1;
 
     List<HotMovie> list = new ArrayList<>();
 
@@ -40,35 +40,30 @@ public class LastAdapter extends RecyclerView.Adapter {
         if (i == TYPE_ONE){
             view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.movie_last_re_item, viewGroup,false);
             return new LastOneViewHolder(view);
-        }else {
+        }else{
             view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.movie_last_two_item, viewGroup,false);
-            return new LastOneViewHolder(view);
+            return new LastTwoViewHolder(view);
         }
-
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int i) {
-        int type = getItemViewType(i);
         HotMovie movie = list.get(i);
-        if (type == 0){
-            LastOneViewHolder oneHolder= (LastOneViewHolder) holder;
-            FrescoUtils.getInstance().showUrlBlur(oneHolder.image,movie.imageUrl,1,1);
-            oneHolder.name.setText(movie.name);
-            oneHolder.score.setText(movie.score+"分");
-        }else {
-            LastTwoViewHolder twoHolder= (LastTwoViewHolder) holder;
-            FrescoUtils.getInstance().showUrlBlur(twoHolder.image,movie.imageUrl,1,1);
-            twoHolder.name.setText(movie.name);
-            twoHolder.score.setText(movie.score+"分");
+        if (holder instanceof LastOneViewHolder){
+            FrescoUtils.getInstance().showUrlBlur(((LastOneViewHolder) holder).image,movie.horizontalImage,1,1);
+            ((LastOneViewHolder) holder).name.setText(movie.name);
+            ((LastOneViewHolder) holder).score.setText(movie.score+"分");
+        }else if (holder instanceof LastTwoViewHolder){
+            FrescoUtils.getInstance().showUrlBlur(((LastTwoViewHolder) holder).image,movie.imageUrl,1,1);
+            ((LastTwoViewHolder) holder).name.setText(movie.name);
+            ((LastTwoViewHolder) holder).score.setText(movie.score+"分");
         }
-
 
     }
 
     @Override
     public int getItemViewType(int position) {
-        if (position==0){
+        if (position ==0){
             return TYPE_ONE;
         }else {
             return TYPE_TWO;

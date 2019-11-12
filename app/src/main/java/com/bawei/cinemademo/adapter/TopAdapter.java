@@ -42,11 +42,16 @@ public class TopAdapter extends RecyclerView.Adapter<TopAdapter.TopViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull TopViewHolder holder, final int i) {
-        HotMovie movie = list.get(i);
+        final HotMovie movie = list.get(i);
         FrescoUtils.getInstance().showUrlBlur(holder.image,movie.imageUrl,1,1);
         holder.name.setText(movie.name);
         holder.score.setText(movie.score+"分");
-
+        holder.image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickTopItemListener.onClick(movie.movieId);
+            }
+        });
     }
 
     @Override
@@ -74,7 +79,7 @@ public class TopAdapter extends RecyclerView.Adapter<TopAdapter.TopViewHolder> {
     }
 
     public interface OnClickTopItemListener{
-        void onClick(View view, int postion);
+        void onClick(int movieId);
     }
 }
 

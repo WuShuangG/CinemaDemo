@@ -9,6 +9,7 @@ import android.widget.RadioGroup;
 
 import com.bawei.cinemademo.R;
 import com.bawei.cinemademo.base.BaseActivity;
+import com.bawei.cinemademo.view.frag.CinemasFragment;
 import com.bawei.cinemademo.view.frag.MainFragment;
 import com.bawei.cinemademo.view.frag.ShowMovieFragment;
 
@@ -36,7 +37,7 @@ public class ShowActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     protected void initView() {
         list = new ArrayList<>();
         list.add(new ShowMovieFragment());
-        list.add(new MainFragment(R.layout.main_frag_kan));
+        list.add(new CinemasFragment());
         list.add(new MainFragment(R.layout.main_frag_jing));
 
         mViewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {

@@ -8,16 +8,16 @@
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/movie_release_image"
-        android:layout_marginLeft="10dp"
-        android:layout_width="120dp"
+        android:layout_width="match_parent"
         app:roundedCornerRadius="5dp"
         android:layout_height="152dp" />
 
     <TextView
         android:id="@+id/movie_release_score"
         android:layout_alignBottom="@id/movie_release_image"
-        android:layout_centerHorizontal="true"
+        android:layout_toRightOf="@id/movie_release_name"
         android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
         android:textSize="11sp"
         android:textColor="@color/check_btn_bg"
         android:layout_width="wrap_content"
@@ -25,8 +25,8 @@
 
     <TextView
         android:id="@+id/movie_release_name"
-        android:layout_below="@id/movie_release_image"
-        android:layout_centerHorizontal="true"
+        android:layout_alignBottom="@id/movie_release_image"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="10dp"
         android:textSize="12sp"
         android:textColor="@color/check_btn_bg"
@@ -40,8 +40,9 @@
         android:textSize="12sp"
         android:background="@drawable/my_btn"
         android:textColor="@color/check_btn_bg"
-        android:layout_below="@id/movie_release_name"
-        android:layout_centerHorizontal="true"
+        android:layout_alignBottom="@id/movie_release_image"
+        android:layout_alignRight="@id/movie_release_image"
+        android:layout_marginRight="30dp"
         android:layout_width="46dp"
         android:layout_height="20dp" />
 

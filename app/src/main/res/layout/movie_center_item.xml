@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_marginTop="10dp"
+    android:paddingHorizontal="10dp">
+
+    <View
+        android:layout_marginTop="25dp"
+        android:background="@drawable/my_bag"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"/>
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/movie_center_image"
+        android:layout_width="120dp"
+        android:layout_marginLeft="20dp"
+        app:roundedCornerRadius="5dp"
+        android:layout_height="152dp" />
+
+    <TextView
+        android:id="@+id/movie_center_score"
+        android:layout_toRightOf="@id/movie_center_image"
+        android:layout_marginTop="45dp"
+        android:textSize="11sp"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/check_btn_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/movie_center_name"
+        android:layout_toRightOf="@id/movie_center_image"
+        android:layout_alignLeft="@id/movie_center_score"
+        android:layout_below="@id/movie_center_score"
+        android:layout_marginTop="20dp"
+        android:textSize="12sp"
+        android:textColor="@color/check_btn_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/movie_center_people"
+        android:layout_marginTop="20dp"
+        android:textSize="12sp"
+        android:layout_toRightOf="@id/movie_center_image"
+        android:layout_alignLeft="@id/movie_center_score"
+        android:layout_below="@id/movie_center_name"
+        android:textColor="@color/check_btn_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/movie_center_btn"
+        android:layout_marginTop="10dp"
+        android:text="预订"
+        android:textSize="12sp"
+        android:layout_alignParentRight="true"
+        android:layout_alignBottom="@id/movie_center_image"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/my_btn"
+        android:textColor="@color/check_btn_bg"
+        android:layout_width="46dp"
+        android:layout_height="20dp" />
+
+</RelativeLayout>

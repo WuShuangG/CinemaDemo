@@ -56,7 +56,6 @@ public abstract class BasePresenter {
                 });
     }
 
-
     protected abstract Observable getModel(IRequest iRequest, Object... args);
 
 }

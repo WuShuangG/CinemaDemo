@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.activity.MoiveDetailActivity">
+
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/detail_image"
+        android:layout_width="match_parent"
+        android:layout_height="650dp"
+        android:background="@color/check_btn_text" />
+
+    <ImageView
+        android:id="@+id/detail_back"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="45dp"
+        android:src="@drawable/back" />
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="150dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="800dp"
+            android:layout_marginTop="400dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="50dp">
+
+                <TextView
+                    android:id="@+id/detail_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="评分"
+                    android:textColor="@color/check_btn_bg"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/detail_commentNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_gravity="right"
+                    android:text="评论人数"
+                    android:textColor="@color/check_btn_bg"
+                    android:textSize="18sp" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/my_moviedetail">
+
+                <RelativeLayout
+                    android:id="@+id/detail_movieText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/detail_name"
+                        android:layout_marginTop="30dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:text="评论人数"
+                        android:textColor="@color/check_btn_bg"
+                        android:textSize="19sp" />
+
+                    <TextView
+                        android:id="@+id/detail_typeAndtimes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/detail_name"
+                        android:layout_alignLeft="@id/detail_name"
+                        android:layout_marginTop="15dp"
+                        android:text="评论人数"
+                        android:textColor="@color/check_btn_bg"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:id="@+id/detail_releaseTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/detail_typeAndtimes"
+                        android:layout_alignLeft="@id/detail_name"
+                        android:layout_marginTop="15dp"
+                        android:text="评论人数"
+                        android:textColor="@color/check_btn_bg"
+                        android:textSize="17sp" />
+
+                    <ImageView
+                        android:layout_width="55dp"
+                        android:layout_height="45dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="30dp"
+                        android:src="@drawable/guanzhu" />
+
+                </RelativeLayout>
+
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/detail_mTablayout"
+                    android:layout_marginTop="50dp"
+                    android:layout_below="@id/detail_movieText"
+                    android:layout_width="match_parent"
+                    app:tabTextColor="@color/check_btn_bg"
+                    android:background="@color/movie_home_fen"
+                    android:layout_height="wrap_content">
+
+                </android.support.design.widget.TabLayout>
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/detail_mViewPage"
+                    android:layout_below="@id/detail_mTablayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="630dp">
+
+                </android.support.v4.view.ViewPager>
+
+
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/detail_btn_comment"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@color/btn_comment"
+            android:text="写影评"
+            android:textColor="@color/check_btn_bg"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/detail_btn_buy"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:background="@color/check_btn_text"
+            android:text="选座购票"
+            android:textColor="@color/check_btn_bg"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+</RelativeLayout>
