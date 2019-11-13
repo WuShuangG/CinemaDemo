@@ -42,13 +42,19 @@ public class CenterAdapter extends RecyclerView.Adapter<CenterAdapter.CenterView
 
     @Override
     public void onBindViewHolder(@NonNull CenterViewHolder holder, final int i) {
-        Soon soon = list.get(i);
+        final Soon soon = list.get(i);
         FrescoUtils.getInstance().showUrlBlur(holder.image,soon.imageUrl,1,1);
         holder.name.setText(soon.name);
         holder.people.setText(soon.wantSeeNum + "人想看");
         Date date = new Date(soon.releaseTime);
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM月dd日上映");
         holder.times.setText(dateFormat.format(date));
+        holder.image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickCenterItemListener.onClick(soon.movieId);
+            }
+        });
     }
 
     @Override
@@ -71,6 +77,13 @@ public class CenterAdapter extends RecyclerView.Adapter<CenterAdapter.CenterView
     }
 
 
+    public interface OnClickCenterItemListener extends TopAdapter.OnClickTopItemListener{}
+
+    private OnClickCenterItemListener onClickCenterItemListener;
+
+    public void setOnClickCenterItemListener(OnClickCenterItemListener onClickCenterItemListener) {
+        this.onClickCenterItemListener = onClickCenterItemListener;
+    }
 }
 
 

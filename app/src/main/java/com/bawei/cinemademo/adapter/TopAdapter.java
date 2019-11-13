@@ -72,7 +72,7 @@ public class TopAdapter extends RecyclerView.Adapter<TopAdapter.TopViewHolder> {
         }
     }
 
-    private OnClickTopItemListener onClickTopItemListener;
+    public OnClickTopItemListener onClickTopItemListener;
 
     public void setOnClickTopItemListener(OnClickTopItemListener onClickTopItemListener) {
         this.onClickTopItemListener = onClickTopItemListener;

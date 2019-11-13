@@ -48,15 +48,27 @@ public class LastAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int i) {
-        HotMovie movie = list.get(i);
+        final HotMovie movie = list.get(i);
         if (holder instanceof LastOneViewHolder){
             FrescoUtils.getInstance().showUrlBlur(((LastOneViewHolder) holder).image,movie.horizontalImage,1,1);
             ((LastOneViewHolder) holder).name.setText(movie.name);
             ((LastOneViewHolder) holder).score.setText(movie.score+"分");
+            ((LastOneViewHolder) holder).image.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onClickLastItemListener.onClick(movie.movieId);
+                }
+            });
         }else if (holder instanceof LastTwoViewHolder){
             FrescoUtils.getInstance().showUrlBlur(((LastTwoViewHolder) holder).image,movie.imageUrl,1,1);
             ((LastTwoViewHolder) holder).name.setText(movie.name);
             ((LastTwoViewHolder) holder).score.setText(movie.score+"分");
+            ((LastTwoViewHolder) holder).image.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onClickLastItemListener.onClick(movie.movieId);
+                }
+            });
         }
 
     }
@@ -101,6 +113,14 @@ public class LastAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
     }
 
+
+    public interface OnClickLastItemListener extends TopAdapter.OnClickTopItemListener{}
+
+    private OnClickLastItemListener onClickLastItemListener;
+
+    public void setOnClickLastItemListener(OnClickLastItemListener onClickLastItemListener) {
+        this.onClickLastItemListener = onClickLastItemListener;
+    }
 }
 
 

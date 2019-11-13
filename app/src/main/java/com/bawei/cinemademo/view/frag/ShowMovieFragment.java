@@ -100,6 +100,14 @@ public class ShowMovieFragment extends BaseFragment {
         movieListCenter.setLayoutManager(new LinearLayoutManager(getContext()));
         centerAdapter = new CenterAdapter();
         movieListCenter.setAdapter(centerAdapter);
+        centerAdapter.setOnClickCenterItemListener(new CenterAdapter.OnClickCenterItemListener() {
+            @Override
+            public void onClick(int movieId) {
+                Intent intent = new Intent(getContext(), MoiveDetailActivity.class);
+                intent.putExtra("movieId",movieId);
+                startActivity(intent);
+            }
+        });
 
         //下列表
         hotMoviePresenter = new HotMoviePresenter(new ReleList());
@@ -137,6 +145,14 @@ public class ShowMovieFragment extends BaseFragment {
         movieListLast.setLayoutManager(gridLayoutManager);
         lastAdapter = new LastAdapter();
         movieListLast.setAdapter(lastAdapter);
+        lastAdapter.setOnClickLastItemListener(new LastAdapter.OnClickLastItemListener() {
+            @Override
+            public void onClick(int movieId) {
+                Intent intent = new Intent(getContext(), MoiveDetailActivity.class);
+                intent.putExtra("movieId",movieId);
+                startActivity(intent);
+            }
+        });
 
     }
 
